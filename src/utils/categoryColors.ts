@@ -1,14 +1,14 @@
 // 🎨 Strong modern colors for default categories
 const BASE_CATEGORY_COLORS: Record<string, string> = {
-  "Food & Dining": "#FF6B6B",        // Vibrant Red
-  Transportation: "#4D96FF",         // Strong Blue
-  Shopping: "#FFA931",               // Bright Orange
-  Entertainment: "#9B5DE5",          // Purple
-  "Bills & Utilities": "#FEE440",    // Yellow
-  Healthcare: "#FF4F7B",             // Pink-Red
-  Education: "#2BCBBA",              // Teal
-  Travel: "#6A4C93",                 // Deep Violet
-  Other: "#A0A0A0",                  // Neutral Gray
+  "Food & Dining": "#FF6B6B", // Vibrant Red
+  Transportation: "#4D96FF", // Strong Blue
+  Shopping: "#FFA931", // Bright Orange
+  Entertainment: "#9B5DE5", // Purple
+  "Bills & Utilities": "#FEE440", // Yellow
+  Healthcare: "#FF4F7B", // Pink-Red
+  Education: "#2BCBBA", // Teal
+  Travel: "#6A4C93", // Deep Violet
+  Other: "#A0A0A0", // Neutral Gray
 };
 
 // 🎨 Fallback colors for new custom categories — bold but distinct

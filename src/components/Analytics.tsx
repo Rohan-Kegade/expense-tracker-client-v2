@@ -185,7 +185,7 @@ export function Analytics({
 
   const availableYears = useMemo(() => {
     const years = new Set(
-      expenses.map((exp) => new Date(exp.date).getFullYear())
+      expenses.map((exp) => new Date(exp.date).getFullYear()),
     );
     return Array.from(years).sort((a, b) => b - a);
   }, [expenses]);
@@ -194,7 +194,7 @@ export function Analytics({
   const totalPages = Math.ceil(filteredExpenses.length / ITEMS_PER_PAGE);
   const paginatedExpenses = filteredExpenses.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   const months = [
@@ -559,7 +559,7 @@ export function Analytics({
                             className="px-3 py-1 rounded-full text-xs text-white"
                             style={{
                               backgroundColor: getCategoryColor(
-                                expense.category
+                                expense.category,
                               ),
                             }}
                           >
@@ -605,7 +605,7 @@ export function Analytics({
                   Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to{" "}
                   {Math.min(
                     currentPage * ITEMS_PER_PAGE,
-                    filteredExpenses.length
+                    filteredExpenses.length,
                   )}{" "}
                   of {filteredExpenses.length} transactions
                 </div>
@@ -632,7 +632,7 @@ export function Analytics({
                         >
                           {page}
                         </button>
-                      )
+                      ),
                     )}
                   </div>
                   <button

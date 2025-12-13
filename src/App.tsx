@@ -1,9 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { HomePage } from './components/HomePage';
-import { LoginPage } from './components/LoginPage';
-import { SignupPage } from './components/SignupPage';
-import { Dashboard } from './components/Dashboard';
-
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HomePage } from "./components/HomePage";
+import { LoginPage } from "./components/LoginPage";
+import { SignupPage } from "./components/SignupPage";
+import { Dashboard } from "./components/Dashboard";
 
 export default function App() {
   return (

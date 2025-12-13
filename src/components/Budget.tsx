@@ -133,7 +133,7 @@ export function Budget({
   const totalBudget = budgets.reduce((sum, b) => sum + b.budget, 0);
   const totalSpent = Object.values(categorySpending).reduce(
     (sum, amount) => sum + amount,
-    0
+    0,
   );
   const totalPercentage =
     totalBudget > 0 ? (totalSpent / totalBudget) * 100 : 0;
@@ -188,8 +188,8 @@ export function Budget({
               totalPercentage >= 100
                 ? "bg-gradient-to-br from-red-500 to-red-600"
                 : totalPercentage >= 80
-                ? "bg-gradient-to-br from-orange-500 to-orange-600"
-                : "bg-gradient-to-br from-green-500 to-green-600"
+                  ? "bg-gradient-to-br from-orange-500 to-orange-600"
+                  : "bg-gradient-to-br from-green-500 to-green-600"
             }`}
           >
             <p className="text-white/90 text-sm mb-1">Remaining</p>
@@ -368,7 +368,7 @@ export function Budget({
                     <div className="w-full bg-gray-200 rounded-full h-4 mb-2 overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${getProgressColor(
-                          percentage
+                          percentage,
                         )}`}
                         style={{ width: `${percentage}%` }}
                       ></div>

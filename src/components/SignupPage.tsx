@@ -38,7 +38,7 @@ export function SignupPage() {
         JSON.stringify({
           ...response.user,
           token: response.token,
-        })
+        }),
       );
 
       navigate("/dashboard");

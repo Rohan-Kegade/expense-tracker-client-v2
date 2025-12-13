@@ -24,7 +24,7 @@ export function LoginPage() {
         JSON.stringify({
           ...response.user,
           token: response.token,
-        })
+        }),
       );
 
       navigate("/dashboard");

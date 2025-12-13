@@ -111,7 +111,7 @@ export function Dashboard() {
 
   const updateExpense = async (
     id: string,
-    updatedExpense: Omit<Expense, "_id">
+    updatedExpense: Omit<Expense, "_id">,
   ) => {
     try {
       const updated = await expenseAPI.update(id, updatedExpense);
@@ -142,7 +142,7 @@ export function Dashboard() {
       await budgetAPI.upsert({ category, budget });
 
       const existingBudgetIndex = budgets.findIndex(
-        (b) => b.category === category
+        (b) => b.category === category,
       );
       if (existingBudgetIndex >= 0) {
         const newBudgets = [...budgets];

@@ -33,7 +33,7 @@ async function apiRequest(endpoint: string, options: RequestInit = {}) {
         .json()
         .catch(() => ({ message: "Request failed" }));
       throw new Error(
-        error.message || `HTTP error! status: ${response.status}`
+        error.message || `HTTP error! status: ${response.status}`,
       );
     }
 
@@ -121,7 +121,7 @@ export const expenseAPI = {
       category: string;
       description: string;
       date: string;
-    }
+    },
   ) => {
     return apiRequest(`/expenses/${id}`, {
       method: "PUT",

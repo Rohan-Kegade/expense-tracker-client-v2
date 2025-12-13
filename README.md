@@ -1,11 +1,9 @@
+# Expense Tracker Website
 
-  # Expense Tracker Website
+This is a code bundle for Expense Tracker Website. The original project is available at https://www.figma.com/design/tTTgwjY08sYdWlAfrfpRYl/Expense-Tracker-Website.
 
-  This is a code bundle for Expense Tracker Website. The original project is available at https://www.figma.com/design/tTTgwjY08sYdWlAfrfpRYl/Expense-Tracker-Website.
+## Running the code
 
-  ## Running the code
+Run `npm i` to install the dependencies.
 
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  
+Run `npm run dev` to start the development server.
