@@ -85,8 +85,11 @@ export function HomePage() {
                 <p className="text-3xl">$1,245.00</p>
               </div>
             </div>
-            <div className="h-48 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center">
-              <BarChart3 className="w-16 h-16 text-gray-300" />
+            <div className="h-48 bg-gradient-to-br bg-cyan-100 to-gray-100 rounded-xl flex items-center justify-center">
+              <BarChart3
+                className="w-16 h-16 text-cyan-600"
+                stroke="currentColor"
+              />
             </div>
           </div>
         </div>
@@ -161,7 +164,10 @@ export function HomePage() {
 
           <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
             <div className="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
-              <BarChart3 className="w-6 h-6 text-cyan-600" />
+              <BarChart3
+                className="w-6 h-6 text-cyan-600"
+                stroke="currentColor"
+              />
             </div>
             <h3 className="text-xl mb-3">Smart Insights</h3>
             <p className="text-gray-600">

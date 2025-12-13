@@ -22,7 +22,7 @@ import {
   Check,
   X,
 } from "lucide-react";
-import { Expense } from "./Dashboard";
+import { Expense } from "../pages/Dashboard";
 import { getCategoryColor } from "../utils/categoryColors";
 
 interface AnalyticsProps {

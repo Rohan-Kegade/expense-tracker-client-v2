@@ -8,7 +8,7 @@ import {
   X,
   AlertTriangle,
 } from "lucide-react";
-import { Expense, CategoryBudget } from "./Dashboard";
+import { Expense, CategoryBudget } from "../pages/Dashboard";
 
 interface BudgetProps {
   expenses: Expense[];

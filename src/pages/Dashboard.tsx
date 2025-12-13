@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExpenseForm } from "./ExpenseForm";
-import { ExpenseList } from "./ExpenseList";
-import { Analytics } from "./Analytics";
-import { Budget } from "./Budget";
-import {
-  TrendingUp,
-  Wallet,
-  LogOut,
-  User,
-  PiggyBank,
-  Loader2,
-} from "lucide-react";
+import { ExpenseForm } from "../components/ExpenseForm";
+import { ExpenseList } from "../components/ExpenseList";
+import { Analytics } from "../components/Analytics";
+import { Budget } from "../components/Budget";
+import { Loader2 } from "lucide-react";
 import { expenseAPI, categoryAPI, budgetAPI, authAPI } from "../services/api";
+import { Header } from "../components/Header";
+import { Navbar } from "../components/Navbar";
 
 export interface Expense {
   _id: string;
@@ -29,9 +24,7 @@ export interface CategoryBudget {
 
 export function Dashboard() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [activeView, setActiveView] = useState<
-    "expenses" | "analytics" | "budget"
-  >("expenses");
+  const [activeView, setActiveView] = useState<"expenses" | "analytics" | "budget">("expenses");
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [categories, setCategories] = useState<string[]>([]);
   const [budgets, setBudgets] = useState<CategoryBudget[]>([]);
@@ -45,7 +38,6 @@ export function Dashboard() {
 
   const loadData = async () => {
     try {
-      // Check if user is logged in
       const user = localStorage.getItem("currentUser");
       if (!user) {
         navigate("/login");
@@ -53,7 +45,6 @@ export function Dashboard() {
       }
       setCurrentUser(JSON.parse(user));
 
-      // Load all data from API
       const [expensesData, categoriesData, budgetsData] = await Promise.all([
         expenseAPI.getAll(),
         categoryAPI.getAll(),
@@ -67,7 +58,6 @@ export function Dashboard() {
       console.error("Error loading data:", err);
       setError(err.message || "Failed to load data");
 
-      // If unauthorized, redirect to login
       if (
         err.message?.includes("unauthorized") ||
         err.message?.includes("401")
@@ -77,17 +67,6 @@ export function Dashboard() {
       }
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      await authAPI.logout();
-    } catch (err) {
-      console.error("Logout error:", err);
-    } finally {
-      localStorage.removeItem("currentUser");
-      navigate("/login");
     }
   };
 
@@ -109,10 +88,7 @@ export function Dashboard() {
     }
   };
 
-  const updateExpense = async (
-    id: string,
-    updatedExpense: Omit<Expense, "_id">,
-  ) => {
+  const updateExpense = async (id: string, updatedExpense: Omit<Expense, "_id">) => {
     try {
       const updated = await expenseAPI.update(id, updatedExpense);
       setExpenses(expenses.map((exp) => (exp._id === id ? updated : exp)));
@@ -128,8 +104,7 @@ export function Dashboard() {
         setCategories([...categories, category]);
 
         if (budget !== undefined && budget > 0) {
-          const newBudget = { category, budget };
-          setBudgets([...budgets, newBudget]);
+          setBudgets([...budgets, { category, budget }]);
         }
       }
     } catch (err: any) {
@@ -141,12 +116,10 @@ export function Dashboard() {
     try {
       await budgetAPI.upsert({ category, budget });
 
-      const existingBudgetIndex = budgets.findIndex(
-        (b) => b.category === category,
-      );
-      if (existingBudgetIndex >= 0) {
+      const idx = budgets.findIndex((b) => b.category === category);
+      if (idx >= 0) {
         const newBudgets = [...budgets];
-        newBudgets[existingBudgetIndex] = { category, budget };
+        newBudgets[idx] = { category, budget };
         setBudgets(newBudgets);
       } else {
         setBudgets([...budgets, { category, budget }]);
@@ -192,80 +165,14 @@ export function Dashboard() {
     );
   }
 
-  if (!currentUser) {
-    return null;
-  }
+  if (!currentUser) return null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="mb-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
-                <Wallet className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl">Expense Tracker</h1>
-                <p className="text-gray-600">
-                  Welcome back, {currentUser.name}!
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200">
-                <User className="w-5 h-5 text-gray-600" />
-                <span className="text-gray-700">{currentUser.email}</span>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 rounded-xl border border-red-200 hover:bg-red-50 transition-colors"
-              >
-                <LogOut className="w-5 h-5" />
-                Logout
-              </button>
-            </div>
-          </div>
-        </header>
+        <Header currentUser={currentUser} onLogout={() => setCurrentUser(null)} />
+        <Navbar activeView={activeView} onChangeView={setActiveView} />
 
-        {/* Navigation */}
-        <div className="flex gap-4 mb-8 overflow-x-auto">
-          <button
-            onClick={() => setActiveView("expenses")}
-            className={`px-6 py-3 rounded-xl transition-all whitespace-nowrap ${
-              activeView === "expenses"
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-          >
-            Expenses
-          </button>
-          <button
-            onClick={() => setActiveView("analytics")}
-            className={`px-6 py-3 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap ${
-              activeView === "analytics"
-                ? "bg-purple-600 text-white shadow-lg shadow-purple-200"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-          >
-            <TrendingUp className="w-4 h-4" />
-            Analytics
-          </button>
-          <button
-            onClick={() => setActiveView("budget")}
-            className={`px-6 py-3 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap ${
-              activeView === "budget"
-                ? "bg-green-600 text-white shadow-lg shadow-green-200"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-          >
-            <PiggyBank className="w-4 h-4" />
-            Budget
-          </button>
-        </div>
-
-        {/* Content */}
         {activeView === "expenses" ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">

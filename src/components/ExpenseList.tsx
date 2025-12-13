@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Trash2, Edit2, Check, X, Calendar } from "lucide-react";
-import { Expense } from "./Dashboard";
+import { Expense } from "../pages/Dashboard";
 import { getCategoryColor } from "../utils/categoryColors";
 
 interface ExpenseListProps {

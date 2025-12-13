@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { Expense } from "./Dashboard";
+import { Expense } from "../pages/Dashboard";
 
 interface ExpenseFormProps {
   onAddExpense: (expense: Omit<Expense, "_id">) => void;
