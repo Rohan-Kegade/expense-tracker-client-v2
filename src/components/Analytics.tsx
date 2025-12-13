@@ -52,28 +52,6 @@ export function Analytics({
     date: "",
   });
 
-  // Monthly data - shows daily expenses for the selected month
-  const monthlyData = useMemo(() => {
-    const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-    const data = Array.from({ length: daysInMonth }, (_, i) => ({
-      day: i + 1,
-      amount: 0,
-    }));
-
-    expenses.forEach((expense) => {
-      const date = new Date(expense.date);
-      if (
-        date.getFullYear() === selectedYear &&
-        date.getMonth() === selectedMonth
-      ) {
-        const day = date.getDate();
-        data[day - 1].amount += expense.amount;
-      }
-    });
-
-    return data;
-  }, [expenses, selectedYear, selectedMonth]);
-
   const monthlyStackedData = useMemo(() => {
     const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
 
