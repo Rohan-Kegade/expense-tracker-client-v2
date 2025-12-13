@@ -44,7 +44,7 @@ export function LoginPage() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
               <Wallet className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl">ExpenseTracker</span>
+            <span className="text-2xl">Expense-Tracker</span>
           </Link>
           <h1 className="text-3xl mb-2">Welcome Back</h1>
           <p className="text-gray-600">Sign in to your account to continue</p>

@@ -1,6 +1,6 @@
 # Expense Tracker Website
 
-This is a code bundle for Expense Tracker Website. The original project is available at https://www.figma.com/design/tTTgwjY08sYdWlAfrfpRYl/Expense-Tracker-Website.
+This is a code bundle for Expense Tracker Website.
 
 ## Running the code
 

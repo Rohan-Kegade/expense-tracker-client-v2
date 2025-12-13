@@ -58,7 +58,7 @@ export function SignupPage() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
               <Wallet className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl">ExpenseTracker</span>
+            <span className="text-2xl">Expense-Tracker</span>
           </Link>
           <h1 className="text-3xl mb-2">Create Account</h1>
           <p className="text-gray-600">Start tracking your expenses today</p>
