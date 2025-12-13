@@ -1,42 +1,34 @@
-import { useState } from 'react';
-import { Plus, X } from 'lucide-react';
-import { Expense } from './Dashboard';
+import { useState } from "react";
+import { Plus, X } from "lucide-react";
+import { Expense } from "./Dashboard";
 
 interface ExpenseFormProps {
-  onAddExpense: (expense: Omit<Expense, '_id'>) => void;
+  onAddExpense: (expense: Omit<Expense, "_id">) => void;
   categories: string[];
   onAddCategory: (category: string, budget?: number) => void;
 }
 
-// const defaultCategories = [
-//   'Food & Dining',
-//   'Transportation',
-//   'Shopping',
-//   'Entertainment',
-//   'Bills & Utilities',
-//   'Healthcare',
-//   'Education',
-//   'Travel',
-//   'Other',
-// ];
-
-export function ExpenseForm({ onAddExpense, categories, onAddCategory }: ExpenseFormProps) {
-  const [amount, setAmount] = useState('');
+export function ExpenseForm({
+  onAddExpense,
+  categories,
+  onAddCategory,
+}: ExpenseFormProps) {
+  const [amount, setAmount] = useState("");
   const [category, setCategory] = useState(categories[0]);
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [showNewCategory, setShowNewCategory] = useState(false);
-  const [newCategory, setNewCategory] = useState('');
-  const [newCategoryBudget, setNewCategoryBudget] = useState('');
+  const [newCategory, setNewCategory] = useState("");
+  const [newCategoryBudget, setNewCategoryBudget] = useState("");
   const [setBudgetForCategory, setSetBudgetForCategory] = useState(false);
 
   // const allCategories = [...defaultCategories, ...customCategories];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!amount || parseFloat(amount) <= 0) {
-      alert('Please enter a valid amount');
+      alert("Please enter a valid amount");
       return;
     }
 
@@ -47,22 +39,25 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
       date,
     });
 
-    setAmount('');
-    setDescription('');
-    setDate(new Date().toISOString().split('T')[0]);
+    setAmount("");
+    setDescription("");
+    setDate(new Date().toISOString().split("T")[0]);
   };
 
   const handleAddNewCategory = () => {
     if (newCategory.trim() && !categories.includes(newCategory.trim())) {
-      const budget = setBudgetForCategory && newCategoryBudget ? parseFloat(newCategoryBudget) : undefined;
+      const budget =
+        setBudgetForCategory && newCategoryBudget
+          ? parseFloat(newCategoryBudget)
+          : undefined;
       onAddCategory(newCategory.trim(), budget);
       setCategory(newCategory.trim());
-      setNewCategory('');
-      setNewCategoryBudget('');
+      setNewCategory("");
+      setNewCategoryBudget("");
       setSetBudgetForCategory(false);
       setShowNewCategory(false);
     } else {
-      alert('Category already exists or is empty');
+      alert("Category already exists or is empty");
     }
   };
 
@@ -73,7 +68,9 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
         <div>
           <label className="block text-sm text-gray-600 mb-2">Amount</label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+              $
+            </span>
             <input
               type="number"
               step="0.01"
@@ -121,7 +118,7 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
                   autoFocus
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -130,12 +127,16 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
                     onChange={(e) => setSetBudgetForCategory(e.target.checked)}
                     className="rounded"
                   />
-                  <span className="text-sm text-gray-700">Set monthly budget for this category</span>
+                  <span className="text-sm text-gray-700">
+                    Set monthly budget for this category
+                  </span>
                 </label>
-                
+
                 {setBudgetForCategory && (
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                      $
+                    </span>
                     <input
                       type="number"
                       step="0.01"
@@ -161,8 +162,8 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
                   type="button"
                   onClick={() => {
                     setShowNewCategory(false);
-                    setNewCategory('');
-                    setNewCategoryBudget('');
+                    setNewCategory("");
+                    setNewCategoryBudget("");
                     setSetBudgetForCategory(false);
                   }}
                   className="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors"
@@ -175,7 +176,9 @@ export function ExpenseForm({ onAddExpense, categories, onAddCategory }: Expense
         </div>
 
         <div>
-          <label className="block text-sm text-gray-600 mb-2">Description</label>
+          <label className="block text-sm text-gray-600 mb-2">
+            Description
+          </label>
           <input
             type="text"
             value={description}

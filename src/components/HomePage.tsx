@@ -1,5 +1,12 @@
-import { Link } from 'react-router-dom';
-import { Wallet, TrendingUp, PieChart, Shield, Smartphone, BarChart3 } from 'lucide-react';
+import { Link } from "react-router-dom";
+import {
+  Wallet,
+  TrendingUp,
+  PieChart,
+  Shield,
+  Smartphone,
+  BarChart3,
+} from "lucide-react";
 
 export function HomePage() {
   return (
@@ -41,7 +48,8 @@ export function HomePage() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Track expenses, analyze spending patterns, and make smarter financial decisions with our intuitive expense tracking platform.
+            Track expenses, analyze spending patterns, and make smarter
+            financial decisions with our intuitive expense tracking platform.
           </p>
           <div className="flex gap-4 justify-center">
             <Link
@@ -87,8 +95,12 @@ export function HomePage() {
       {/* Features Section */}
       <section id="features" className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h2 className="text-4xl mb-4">Everything You Need to Manage Your Money</h2>
-          <p className="text-xl text-gray-600">Powerful features to help you stay on top of your finances</p>
+          <h2 className="text-4xl mb-4">
+            Everything You Need to Manage Your Money
+          </h2>
+          <p className="text-xl text-gray-600">
+            Powerful features to help you stay on top of your finances
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -98,7 +110,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Easy Expense Tracking</h3>
             <p className="text-gray-600">
-              Quickly add and categorize your expenses with an intuitive interface. Track every dollar with ease.
+              Quickly add and categorize your expenses with an intuitive
+              interface. Track every dollar with ease.
             </p>
           </div>
 
@@ -108,7 +121,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Detailed Analytics</h3>
             <p className="text-gray-600">
-              Visualize your spending patterns with interactive charts and graphs. Monthly and yearly insights.
+              Visualize your spending patterns with interactive charts and
+              graphs. Monthly and yearly insights.
             </p>
           </div>
 
@@ -118,7 +132,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Category Breakdown</h3>
             <p className="text-gray-600">
-              See exactly where your money goes with detailed category breakdowns and spending analysis.
+              See exactly where your money goes with detailed category
+              breakdowns and spending analysis.
             </p>
           </div>
 
@@ -128,7 +143,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Secure & Private</h3>
             <p className="text-gray-600">
-              Your financial data is stored securely. We prioritize your privacy and data protection.
+              Your financial data is stored securely. We prioritize your privacy
+              and data protection.
             </p>
           </div>
 
@@ -138,7 +154,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Mobile Friendly</h3>
             <p className="text-gray-600">
-              Access your expenses anywhere, anytime. Fully responsive design works on all devices.
+              Access your expenses anywhere, anytime. Fully responsive design
+              works on all devices.
             </p>
           </div>
 
@@ -148,7 +165,8 @@ export function HomePage() {
             </div>
             <h3 className="text-xl mb-3">Smart Insights</h3>
             <p className="text-gray-600">
-              Get actionable insights about your spending habits and make informed financial decisions.
+              Get actionable insights about your spending habits and make
+              informed financial decisions.
             </p>
           </div>
         </div>
@@ -159,7 +177,8 @@ export function HomePage() {
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
           <h2 className="text-4xl mb-4">Ready to Take Control?</h2>
           <p className="text-xl mb-8 text-blue-100">
-            Join thousands of users who are already managing their finances smarter
+            Join thousands of users who are already managing their finances
+            smarter
           </p>
           <Link
             to="/signup"

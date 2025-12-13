@@ -1,32 +1,35 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Wallet, Mail, Lock, Loader2 } from 'lucide-react';
-import { authAPI } from '../services/api';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Wallet, Mail, Lock, Loader2 } from "lucide-react";
+import { authAPI } from "../services/api";
 
 export function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
       const response = await authAPI.login({ email, password });
-      
+
       // Store user data and token
-      localStorage.setItem('currentUser', JSON.stringify({
-        ...response.user,
-        token: response.token,
-      }));
-      
-      navigate('/dashboard');
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify({
+          ...response.user,
+          token: response.token,
+        })
+      );
+
+      navigate("/dashboard");
     } catch (err: any) {
-      setError(err.message || 'Login failed. Please try again.');
+      setError(err.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -73,7 +76,9 @@ export function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm text-gray-600 mb-2">Password</label>
+              <label className="block text-sm text-gray-600 mb-2">
+                Password
+              </label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -109,24 +114,17 @@ export function LoginPage() {
                   Signing in...
                 </>
               ) : (
-                'Sign In'
+                "Sign In"
               )}
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{" "}
             <Link to="/signup" className="text-blue-600 hover:text-blue-700">
               Sign up
             </Link>
           </div>
-        </div>
-
-        {/* Demo Credentials */}
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-          <p className="text-sm text-blue-800 mb-2">Demo Account:</p>
-          <p className="text-xs text-blue-700">Email: demo@example.com</p>
-          <p className="text-xs text-blue-700">Password: demo123</p>
         </div>
       </div>
     </div>

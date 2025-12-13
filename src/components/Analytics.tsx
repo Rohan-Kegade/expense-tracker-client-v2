@@ -2,8 +2,6 @@ import { useState, useMemo } from "react";
 import {
   BarChart,
   Bar,
-  LineChart,
-  Line,
   PieChart,
   Pie,
   Cell,
@@ -12,8 +10,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  AreaChart,
-  Area,
 } from "recharts";
 import {
   Calendar,
@@ -77,37 +73,6 @@ export function Analytics({
 
     return data;
   }, [expenses, selectedYear, selectedMonth]);
-
-  // Yearly data - shows monthly totals for the selected year
-  const yearlyData = useMemo(() => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const data = months.map((month, index) => ({
-      month,
-      amount: 0,
-    }));
-
-    expenses.forEach((expense) => {
-      const date = new Date(expense.date);
-      if (date.getFullYear() === selectedYear) {
-        data[date.getMonth()].amount += expense.amount;
-      }
-    });
-
-    return data;
-  }, [expenses, selectedYear]);
 
   const monthlyStackedData = useMemo(() => {
     const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
@@ -387,31 +352,7 @@ export function Analytics({
               ? `Daily Spending - ${months[selectedMonth]} ${selectedYear}`
               : `Monthly Spending - ${selectedYear}`}
           </h3>
-          {/* <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={viewMode === "monthly" ? monthlyData : yearlyData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis
-                dataKey={viewMode === "monthly" ? "day" : "month"}
-                stroke="#9ca3af"
-              />
-              <YAxis stroke="#9ca3af" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "8px",
-                }}
-              />
-              <Line
-                type="monotone"
-                dataKey="amount"
-                stroke="#3B82F6"
-                strokeWidth={3}
-                dot={{ fill: "#3B82F6", r: 4 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer> */}
+
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={
